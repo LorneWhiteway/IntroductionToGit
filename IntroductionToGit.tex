@@ -1,98 +1,52 @@
-% !TEX TS-program = pdflatex
-% !TEX encoding = UTF-8 Unicode
-
-% This file is a template using the "beamer" package to create slides for a talk or presentation
-% - Giving a talk on some subject.
-% - The talk is between 15min and 45min long.
-% - Style is ornate.
-
-% MODIFIED by Jonathan Kew, 2008-07-06
-% The header comments and encoding in this file were modified for inclusion with TeXworks.
-% The content is otherwise unchanged from the original distributed with the beamer package.
-
-
-% http://tex.stackexchange.com/questions/99049/latex-error-option-clash-for-package-xcolor-even-if-i-put-listings-before
-\PassOptionsToPackage{usenames,dvipsnames}{xcolor}
+% http://www.ctan.org/tex-archive/macros/latex/contrib/beamer/examples
+% http://latex.artikel-namsu.de/english/beamer-examples.html
 
 \documentclass{beamer}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{fancybox, graphicx}
+\usepackage{listings}
+\usepackage{tikz} % Diagrams
+\usepackage{color}
+\usepackage{textcomp} % See https://tex.stackexchange.com/questions/145416/how-to-have-straight-single-quotes-in-lstlistings
 
-% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
-%
-% In principle, this file can be redistributed and/or modified under
-% the terms of the GNU Public License, version 2.
-%
-% However, this file is supposed to be a template to be modified
-% for your own needs. For this reason, if you use this file as a
-% template and not specifically distribute it as part of a another
-% package/program, I grant the extra permission to freely copy and
-% modify this file as you see fit and even to delete this copyright
-% notice. 
-
-\mode<presentation>
-{
-  \usetheme{boxes}
-  \usecolortheme{beaver}
-  \setbeamercovered{transparent}
-  % or whatever (possibly just delete it)
-}
-
-\setbeamertemplate{footline}[frame number]
-
-\usepackage[english]{babel}
-
-\usepackage{parskip}
-\usepackage{tikz}
-\usetikzlibrary{arrows,matrix,decorations.markings,decorations.pathreplacing}
-% Bigger arrowheads
-\tikzset{
-  big arrow/.style={
-    decoration={markings,mark=at position 1 with {\arrow[scale=2,#1]{>}}},
-    postaction={decorate},
-    shorten >=0.4pt},
-  big arrow/.default=black}
-  
-\usepackage{amsopn}
-\DeclareMathOperator{\Hom}{Hom}
+\lstset{language=Python,upquote=true} % Format listings as appropriate for Python. Inexplicably we get problems if the language is set as part of the \begin{lstlisting} command.
 
 
-\usepackage[utf8]{inputenc}
-
-\usepackage{times}
-\usepackage[T1]{fontenc}
-% Or whatever. Note that the encoding and the font should match. If T1
-% does not look nice, try deleting the line with the fontenc.
-
-\usepackage{subfig}
-\usepackage{graphicx,multicol}
-\usepackage{siunitx}
+\usetheme{boxes}
+\usecolortheme{beaver}
 
 
-\title[Introduction to git] % (optional, use only with long paper titles)
-{Introduction to git}
+\title{Introduction to git}
 
 \author{Lorne Whiteway \\ lorne.whiteway@star.ucl.ac.uk}
-\date{14 November 2017}
 
-% If you wish to uncover everything in a step-wise fashion, uncomment
-% the following command: 
-%\beamerdefaultoverlayspecification{<+->}
+\institute[UCL]
+{
+  Astrophysics Group\\
+  Department of Physics and Astronomy\\
+  University College London
+}
+\date
+{17 November 2017}
+
+\subject{IT}
 
 \begin{document}
 
-% See https://tex.stackexchange.com/questions/82456/how-to-remove-figure-caption-prefix-figure-in-beamer
-\setbeamertemplate{caption}{\raggedright\insertcaption\par}
-
-\begin{frame}
-  \titlepage
-\end{frame}
+\frame{\titlepage}
 
 \section{Introduction}
 
-\begin{frame}{Slide 1}
-Content
+\begin{frame}{Where to find this presentation}
+  \begin{block}{}
+    Find the presentation at \alert{\url{https://tinyurl.com/y8pr4mvq}}.\\
+  \end{block}
+  \begin{block}{}
+    On this page click on `Download' to get a copy of the presentation.
+  \end{block}
 \end{frame}
 
 
 \end{document}
-
-

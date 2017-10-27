@@ -1,7 +1,8 @@
 % http://www.ctan.org/tex-archive/macros/latex/contrib/beamer/examples
 % http://latex.artikel-namsu.de/english/beamer-examples.html
 
-\documentclass{beamer}
+%\documentclass{beamer}
+\documentclass[usenames,dvipsnames]{beamer}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{bm}
@@ -37,8 +38,6 @@
 
 \frame{\titlepage}
 
-\section{Introduction}
-
 \begin{frame}{Where to find this presentation}
   \begin{block}{}
     Find the presentation at \alert{\url{https://tinyurl.com/y8pr4mvq}}.\\
@@ -48,5 +47,177 @@
   \end{block}
 \end{frame}
 
+
+\begin{frame}{\url{https://xkcd.com/1597/}}
+  \begin{block}{}
+    \begin{center}
+      \includegraphics[scale=0.45]{xkcd_1597.png}
+    \end{center}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}{Some commentary...}
+  \begin{block}{}
+    \url{https://stevebennett.me/2012/02/24/10-things-i-hate-about-git/}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Purpose of presentation}
+  \begin{block}{}
+    \begin{itemize}
+      \item{I don't want to teach you how to use git.}
+      \item{Rather I want to illustrate (part of) git's `internal model' and to define certain key git terminology so that you will be better prepared to teach yourself git.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Why is git so hard to come to terms with?}
+  \begin{block}{}
+    \begin{itemize}
+      \item{It's not your fault.}
+    \end{itemize}
+  \end{block}
+  \begin{block}{}
+    \begin{itemize}
+      \item{The internal model is complicated.}
+      \item{The interface is inconsistent.}
+      \item{The documentation is unhelpful.}
+      \item{Several key ideas have been given misleading names.}
+      \item{It uses a `distributed' model whereas what you usually want is a `client/server' model. So you tend to be `fighting against the paradigm'...}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Source control}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Source control is software to `keep track of' (i.e. store) successive versions as we edit a collection of \textit{source} files (computer code, \LaTeX{} documents, etc.)}
+      \item{Works best if the source is text, not binary. Intermediate files are usually not kept track of. Output files might be - your choice.}
+      \item{Any serious project should be under source control.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}{Working directory and repository}
+  \begin{block}{}
+    \begin{itemize}
+      \item{You need a \textit{working directory} and a \textit{repository}.}
+      \item{The working directory and its subdirectories contain the actual files that you are editing.}
+      \item{The repository is some sort of database containing all previous versions.}
+      \item{One model would be to put the repository on the Internet or Intranet where everyone can see it...}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Location of git repositiory}
+  \begin{block}{}
+    \begin{itemize}
+      \item{... But in git the repository is \textbf{next to} the working directory, in a hidden subdirectory (called .git) of the top-level working directory.}
+    \end{itemize}
+    \begin{center}
+      \includegraphics[scale=0.5]{ls_output.png}
+    \end{center}
+  \end{block}
+\end{frame}
+
+\begin{frame}{This has consequences...}
+  \begin{block}{}
+    \begin{itemize}
+      \item{You therefore need to have a git repository next to your working directory on your local directory (where you are doing the actual editing).}
+      \item{But typically you will also need one on the internet (for backup and for collaboration and sharing).}
+      \item{So you will typically be dealing with \textbf{two} git repositories (and dealing with the issues of keeping them in synch.}
+    \end{itemize}
+    \begin{itemize}
+      \item{The upside is that you can still do version control even if you are not connected to the Internet.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Example repository content}
+  \begin{figure}
+    \begin{center}
+      \begin{tikzpicture}[font=\ttfamily]
+        \node (A) at (-2.5,5) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {A};
+        \node (B) at (0.0,5) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {B};
+        \node (C) at (2.5,5) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {C};
+        \draw [->,thick] (A.east) -- (B.west) node [midway,left] {};
+        \draw [->,thick] (B.east) -- (C.west) node [midway,left] {};
+      \end{tikzpicture}
+    \end{center}
+  \end{figure}
+  \begin{block}{}
+    \begin{itemize}
+      \item{This repository contains three successive versions of the files in the working directory (and its subdirectories).}
+      \item{Each version is represented here as a \textit{node} (in green).}
+      \item{An initial set of files (version A) was comitted to the repository; the files were then edited and the new file set (version B) was comiitted; the files were then edited and comitted a third time (version C).}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Another example}
+  \begin{figure}
+    \begin{center}
+      \begin{tikzpicture}[font=\ttfamily]
+        \node (A) at (-1.25,5) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {A};
+        \node (B) at (1.25,6) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {B};
+        \node (C) at (1.5,4) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {C};
+        \draw [->,thick] (A.east) -- (B.west) node [midway,left] {};
+        \draw [->,thick] (A.east) -- (C.west) node [midway,left] {};
+      \end{tikzpicture}
+    \end{center}
+  \end{figure}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Here we committed A...}
+      \item{Then we edited A (to form B) and committed B...}
+      \item{Then we went back to A, made a perhaps different set of edits (to form C) and committed C.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{What do the arrows actually stand for?}
+  \begin{figure}
+    \begin{center}
+      \begin{tikzpicture}[font=\ttfamily]
+        \node (A) at (-1.25,5) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {A};
+        \node (B) at (1.25,6) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {B};
+        \node (C) at (1.5,4) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {C};
+        \draw [->,thick] (A.east) -- (B.west) node [midway,left] {};
+        \draw [->,thick] (A.east) -- (C.west) node [midway,left] {};
+      \end{tikzpicture}
+    \end{center}
+  \end{figure}
+  \begin{block}{}
+    \begin{itemize}
+      \item{An arrow respects time (pointing from an earlier version to a later version), and indicates that a node was derived from an earlier node by editing.}
+      \item{Q: There exists a set of edits that would take you from B to C, so why not show that arrow as well? A: It's an \textit{itinerary} (showing the route we took), not a \textit{map} of all possible routes.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Merging}
+  \begin{figure}
+    \begin{center}
+      \begin{tikzpicture}[font=\ttfamily]
+        \node (A) at (-3,5) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {A};
+        \node (B) at (-0.125,6) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {B};
+        \node (C) at (0.125,4) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {C};
+        \node (D) at (3,5) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {D};
+        \draw [->,thick] (A.east) -- (B.west) node [midway,left] {};
+        \draw [->,thick] (A.east) -- (C.west) node [midway,left] {};
+        \draw [->,thick] (B.east) -- (D.west) node [midway,left] {};
+        \draw [->,thick] (C.east) -- (D.west) node [midway,left] {};
+      \end{tikzpicture}
+    \end{center}
+  \end{figure}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Here we combined the `A to B' edits and the `A to C' edits (to form D), which was committed.}
+      \item{More on such \textit{merging} later.}
+    \end{itemize}
+  \end{block}
+\end{frame}
 
 \end{document}

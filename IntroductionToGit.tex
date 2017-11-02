@@ -12,7 +12,12 @@
 \usepackage{color}
 \usepackage{textcomp} % See https://tex.stackexchange.com/questions/145416/how-to-have-straight-single-quotes-in-lstlistings
 
-\lstset{language=Python,upquote=true} % Format listings as appropriate for Python. Inexplicably we get problems if the language is set as part of the \begin{lstlisting} command.
+\lstset{language=bash,upquote=true} % Format listings as appropriate for bash. Inexplicably we get problems if the language is set as part of the \begin{lstlisting} command.
+
+% https://tex.stackexchange.com/questions/36030/how-to-make-a-single-word-look-as-some-code
+\definecolor{light-gray}{gray}{0.95}
+\newcommand{\code}[1]{\colorbox{light-gray}{\texttt{#1}}}
+
 
 
 \usetheme{boxes}
@@ -47,15 +52,13 @@
   \end{block}
 \end{frame}
 
-
-\begin{frame}{\url{https://xkcd.com/1597/}}
+\begin{frame}{\url{https://xkcd.com/1597/} {\tiny Creative Commons Attribution-NonCommercial 2.5 License.}}
   \begin{block}{}
     \begin{center}
       \includegraphics[scale=0.45]{xkcd_1597.png}
     \end{center}
   \end{block}
 \end{frame}
-
 
 \begin{frame}{Some commentary...}
   \begin{block}{}
@@ -68,9 +71,11 @@
     \begin{itemize}
       \item{I don't want to teach you how to use git.}
       \item{Rather I want to illustrate (part of) git's `internal model' and to define certain key git terminology so that you will be better prepared to teach yourself git.}
+      \item{My examples assume you are calling git from the command-line. Friendlier interfaces to git exist - but you still need to know the underlying model to use them effectively.}
     \end{itemize}
   \end{block}
 \end{frame}
+
 
 \begin{frame}{Why is git so hard to come to terms with?}
   \begin{block}{}
@@ -219,5 +224,31 @@
     \end{itemize}
   \end{block}
 \end{frame}
+
+\begin{frame}{DAG}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Hence we get a graph (in the mathematical sense of nodes plus edges).}
+      \item{The graph is not a \textit{tree} (because of merging).}
+      \item{It is \textit{directed} (edges have arrows) and \textit{acyclic} (cycles would break causality), so we have a \textit{DAG} (directed acyclic graph).}
+      \item{Nodes have \textit{parents} and \textit{children}, and hence \textit{ancestors} and \textit{descendents}.}
+      \item{One node - the initial \textit{root} node - has no parents. All other nodes have one or two parents. Thus the graph is connected, and any two nodes have ancestors in common.}
+      \item{\textit{Graph theory} is an interesting part of mathematics - but alas not useful here.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Seeing the DAG}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Run \code{gitk --all} to see the DAG (lots of other information as well).}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+
+
+
 
 \end{document}

@@ -77,17 +77,12 @@
 \end{frame}
 
 
-\begin{frame}{Why is git so hard to come to terms with?}
-  \begin{block}{}
-    \begin{itemize}
-      \item{It's not your fault.}
-    \end{itemize}
-  \end{block}
+\begin{frame}{Why is git (relatively) hard to come to terms with?}
   \begin{block}{}
     \begin{itemize}
       \item{The internal model is complicated.}
       \item{The interface is inconsistent.}
-      \item{The documentation is unhelpful.}
+      \item{The documentation is suboptimal.}
       \item{Several key ideas have been given misleading names.}
       \item{It uses a `distributed' model whereas what you usually want is a `client/server' model. So you tend to be `fighting against the paradigm'...}
     \end{itemize}
@@ -156,7 +151,7 @@
     \begin{itemize}
       \item{This repository contains three successive versions of the files in the working directory (and its subdirectories).}
       \item{Each version is represented here as a \textit{node} (in green).}
-      \item{An initial set of files (version A) was comitted to the repository; the files were then edited and the new file set (version B) was comiitted; the files were then edited and comitted a third time (version C).}
+      \item{An initial set of files (version A) was comitted to the repository; the files were then edited and the new file set (version B) was comitted; the files were then edited and comitted a third time (version C).}
     \end{itemize}
   \end{block}
 \end{frame}
@@ -243,6 +238,11 @@
     \begin{itemize}
       \item{Run \code{gitk --all} to see the DAG (lots of other information as well).}
     \end{itemize}
+  \end{block}
+  \begin{block}{}
+    \begin{center}
+      \includegraphics[scale=0.8]{DAG.png}
+    \end{center}
   \end{block}
 \end{frame}
 

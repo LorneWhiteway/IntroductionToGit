@@ -247,6 +247,60 @@
 \end{frame}
 
 
+\begin{frame}{What's in a node?}
+  \begin{block}{}
+    At least:
+    \begin{itemize}
+      \item{Pointers to enough information to reconstruct the working directory as of that instant.}
+      \item{Administrative information: who made the commit, a `commit message', etc.}
+      \item{A permanent node name (SHA1 format - 40 hexa digits e.g. c2d2ea34cec13a0956488f2b919861fccad8a448). You can abbreviate this to an initial substring (provided that it is long enough to be unique).}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Pointers to nodes - tags}
+  \begin{block}{}
+    \begin{itemize}
+      \item{A \textit{tag} is a label that is attached to a node.}
+    \end{itemize}
+  \end{block}
+  \begin{block}{}
+    \begin{center}
+      \includegraphics[scale=0.6]{Tag.png}
+    \end{center}
+  \end{block}
+\end{frame}
+  
+\begin{frame}{Pointers to nodes - branches (1)}
+  \begin{block}{}
+    \begin{itemize}
+      \item{A \textit{branch} is a moveable label that is attached to a node.}
+      \item{Here `moveable' means that if you commit an edit to that node then the branch label moves to the child node.}
+    \end{itemize}
+  \end{block}
+  \begin{block}{}
+    %\begin{center}
+      \includegraphics[width=0.5\textwidth]{Branch_1.png}%
+      \includegraphics[width=0.5\textwidth]{Branch_2.png}
+    %\end{center}
+  \end{block}
+\end{frame}
+  
+\begin{frame}{Pointers to nodes - branches (2)}
+  \begin{block}{}
+    \begin{itemize}
+      \item{A branch can point to any node in the DAG - not just to a terminal node (i.e. node with no descendents).}
+      \item{So `branch' is not a perfect metaphor; better is `pointer to a place where growth may occur' (which may be on the trunk.}
+    \end{itemize}
+  \end{block}
+  \begin{block}{}
+    \begin{center}
+      \includegraphics[scale=0.4]{Branch_3.png}
+    \end{center}
+  \end{block}
+\end{frame}
+
+
 
 
 

@@ -347,14 +347,50 @@
 \end{frame}
 
 \begin{frame}{Name that node}
-  \begin{block}{How to refer to a node?}
+  \begin{block}{}
     \begin{itemize}
-      \item{Use its (abbreviated) SHA1 name e.g. `c2d2ea34'.}
-      \item{Or by a pointer name (a tag name, a branch name, or the name `HEAD').}
+      \item{Refer to a node using its (abbreviated) SHA1 name e.g. `c2d2ea34'.}
+      \item{Or use a pointer name (a tag name, a branch name, or the name `HEAD').}
       \item{Can append \^{} to mean `parent of', \^{}\^{} to mean `grandparent', etc.}
       \item{Distinguish multiple parents via \^{}1 or \^{}2.}
       \item{Alternatively e.g. \textasciitilde4 means the same as \^{}\^{}\^{}\^{}.}
       \item{Example: \code{git checkout master\^{}\^{}}.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{The index}
+  \begin{block}{}
+    \begin{itemize}
+      \item{A git repository contains an \textit{index}, which is a list of the files in the working directory that git knows about (i.e. that git is `tracking'.}
+      \item{The \textit{index} contains other information that makes it fast to answer the question `has this file changed since a version of it was last put into the repository?'}
+    \end{itemize}
+  \end{block}
+  \begin{block}{}
+    \begin{center}
+      \includegraphics[scale=0.7]{Index.png}
+    \end{center}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}{git operations}
+  \begin{block}{Three types of git operations}
+    \begin{itemize}
+      \item{Managing the relation between a repository and its associated working directory.}
+      \item{Repository maintenance.}
+      \item{Managing the relation between two repositories.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Repository $\leftrightarrow$ working directory (1)}
+  \begin{block}{Things you can do:}
+    \begin{itemize}
+      \item{See a description of the relationship between the repository and the working directory: \code{git status}.}
+      \item{Check-in the (changed) files that are in the working directory, thereby creating a new node: \code{git commit -a}. TODO: WHAT EXACTLY DEFINES THE PARENT OF THIS NEW NODE?}
+      \item{Tell the repository about a new file in the working directory that you want the repository to pay attention to: \code{git add <filename>}. This does not do a commit!}
+      \item{Make the working directory be equal to the contents of a specific node: \code{git checkout <nodename>}. This fails if there are uncommited changes in the working directory.}
     \end{itemize}
   \end{block}
 \end{frame}

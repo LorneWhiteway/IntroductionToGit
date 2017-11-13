@@ -253,7 +253,7 @@
     \begin{itemize}
       \item{Pointers to enough information to reconstruct the working directory as of that instant.}
       \item{Administrative information: who made the commit, a `commit message', etc.}
-      \item{A permanent node name (SHA1 format - 40 hexa digits e.g. c2d2ea34cec13a0956488f2b919861fccad8a448). You can abbreviate this to an initial substring (provided that it is long enough to be unique).}
+      \item{A permanent node name (SHA1 format - 40 hex digits e.g. c2d2ea34cec13a0956488f2b919861fccad8a448). You can abbreviate this to an initial substring (provided that it is long enough to be unique).}
     \end{itemize}
   \end{block}
 \end{frame}
@@ -289,8 +289,17 @@
 \begin{frame}{Pointers to nodes - branches (2)}
   \begin{block}{}
     \begin{itemize}
-      \item{A branch can point to any node in the DAG - not just to a terminal node (i.e. node with no descendents).}
-      \item{So `branch' is not a perfect metaphor; better is `pointer to a place where growth may occur' (which may be on the trunk.}
+      \item{Because it moves with the commits, the branch is often thought of as a `development line' (imagine not just the node that the branch points to, but also all the past and future nodes that the branch has pointed to or will point to).}
+      \item{In some contexts (e.g. cloning) a branch is used to refer not only to the pointed-to node but also all its ancestors.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Pointers to nodes - branches (3)}
+  \begin{block}{}
+    \begin{itemize}
+      \item{A branch can point to any node in the DAG - not just to a terminal node (= node with no descendents).}
+      \item{So `branch' is not a perfect metaphor; better is `pointer to a place where growth may occur' (which may be on the trunk).}
     \end{itemize}
   \end{block}
   \begin{block}{}
@@ -300,8 +309,42 @@
   \end{block}
 \end{frame}
 
+\begin{frame}{Pointers to nodes - branches (4)}
+  \begin{block}{}
+    \begin{itemize}
+      \item{When git creates a new repository it creates a branch called `master' that points to the root node.}
+      \item{In the git community `master' is usually taken to mean `the main development line' and house rules often insist that the node pointed to by `master' be `good' (i.e. stable, tested, usable).}
+      \item{But this is not forced by git. You don't even need to have a master branch.}
+    \end{itemize}
+  \end{block}
+\end{frame}
 
+\begin{frame}{Pointers to nodes - HEAD (1)}
+  \begin{block}{}
+    \begin{itemize}
+      \item{The special pointer HEAD points to the node that corresponds to the files in the working directory. This can be any node in the DAG.}
+      \item{In gitk the HEAD node is shown in yellow.}
+    \end{itemize}
+  \end{block}
+  \begin{block}{}
+    \begin{center}
+      \includegraphics[scale=0.8]{Head.png}
+    \end{center}
+  \end{block}
+\end{frame}
 
+\begin{frame}{Pointers to nodes - HEAD (2) - Detached HEAD}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Usually HEAD points to the same node as one of the branches. But it doesn't have to; if it doesn't then we say we have a `detached HEAD'.}
+    \end{itemize}
+  \end{block}
+  \begin{block}{}
+    \begin{center}
+      \includegraphics[scale=0.8]{DetachedHead.png}
+    \end{center}
+  \end{block}
+\end{frame}
 
 
 

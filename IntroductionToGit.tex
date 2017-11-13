@@ -411,11 +411,11 @@
 
 \begin{frame}{Three types of git operations}
   \begin{block}{}
-    \begin{itemize}
+    \begin{enumerate}
       \item{Managing the relation between a repository and its associated working directory.}
       \item{Repository maintenance.}
       \item{Managing the relation between two repositories (e.g. between your local repository and a copy that is on the Internet).}
-    \end{itemize}
+    \end{enumerate}
   \end{block}
 \end{frame}
 
@@ -584,10 +584,70 @@
   \begin{block}{}
     \begin{itemize}
       \item{If a node is not `named' (i.e. pointed to by a tag or a branch), and if none of its descendents are named either, then git considers it unneeded and will delete it the next time it does `automatic cleanup'.}
-      \item{Recall that a branch is just a pointer to a node. So moving a branch doesn't involve any rearrangement of the DAG - it means simply changing the node to which the branch points.}
+      \item{So to prune an unneeded `spur' simply delete the branch (i.e. the pointer to the last node in the spur). The nodes in the spur will then eventually be deleted.}
     \end{itemize}
   \end{block}
 \end{frame}
+
+\begin{frame}{Interactions between two repositories (1)}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Use \code{git clone} to make a copy of a repository.}
+      \item{The new cloned repository remembers the location of the repository from which it was cloned (i.e. the \textit{remote} repository).}
+      \item{You can tell the cloned repository a name to use to refer to the remote repository. By default this name is `origin'.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Standard working procedure:}
+  \begin{block}{}
+    \begin{enumerate}
+      \item{Create a repository on the Internet;}
+      \item{Clone it to make a local copy;}
+      \item{Use the commands described above to add and commit to the local repository;}
+      \item{Use commands to be described below to keep the local and remote repositories in sync.}
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Internet hosting for repositories}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Github (\url{https://github.com/}) and BitBucket (\url{https://bitbucket.org/}) are websites for hosting git repositories.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Interactions between two repositories (2)}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Use \code{git push} to make the remote repository look like the local repository.}
+      \item{The full syntax is \code{git push <remote> <branch>}.}
+      \item{Thus for example you might need to say \code{git push origin master}.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Interactions between two repositories (3)}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Use \code{git pull} to make the local repository look like the remote repository.}
+      \item{This would be useful e.g. if someone else had made contributions to the remote repository since you cloned it.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{TODO}
+  \begin{block}{List of slides still to be created}
+    \begin{itemize}
+      \item{Handling merge conflicts during push and pull}
+      \item{Difference between pull and fetch; remote tracking branches}
+      \item{Github forking and pull requests}
+      \item{Deciding which git workflow to use}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
 
 
 

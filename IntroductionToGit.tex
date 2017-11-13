@@ -227,7 +227,7 @@
       \item{The graph is not a \textit{tree} (because of merging).}
       \item{It is \textit{directed} (edges have arrows) and \textit{acyclic} (cycles would break causality), so we have a \textit{DAG} (directed acyclic graph).}
       \item{Nodes have \textit{parents} and \textit{children}, and hence \textit{ancestors} and \textit{descendents}.}
-      \item{One node - the initial \textit{root} node - has no parents. All other nodes have one or two parents. Thus the graph is connected, and any two nodes have ancestors in common.}
+      \item{One node - the initial \textit{root} node - has no parents. All other nodes have one or two parents (or more in special cases). Thus the graph is connected, and any two nodes have ancestors in common.}
       \item{\textit{Graph theory} is an interesting part of mathematics - but alas not useful here.}
     \end{itemize}
   \end{block}
@@ -346,6 +346,18 @@
   \end{block}
 \end{frame}
 
+\begin{frame}{Name that node}
+  \begin{block}{How to refer to a node?}
+    \begin{itemize}
+      \item{Use its (abbreviated) SHA1 name e.g. `c2d2ea34'.}
+      \item{Or by a pointer name (a tag name, a branch name, or the name `HEAD').}
+      \item{Can append \^{} to mean `parent of', \^{}\^{} to mean `grandparent', etc.}
+      \item{Distinguish multiple parents via \^{}1 or \^{}2.}
+      \item{Alternatively e.g. \textasciitilde4 means the same as \^{}\^{}\^{}\^{}.}
+      \item{Example: \code{git checkout master\^{}\^{}}.}
+    \end{itemize}
+  \end{block}
+\end{frame}
 
 
 \end{document}

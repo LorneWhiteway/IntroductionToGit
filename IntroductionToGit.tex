@@ -352,18 +352,27 @@
       \item{Refer to a node using its (abbreviated) SHA1 name e.g. `c2d2ea34'.}
       \item{Or use a pointer name (a tag name, a branch name, or the name `HEAD').}
       \item{Can append \^{} to mean `parent of', \^{}\^{} to mean `grandparent', etc.}
+      \item{Example: \code{git checkout master\^{}\^{}}.}
       \item{Distinguish multiple parents via \^{}1 or \^{}2.}
       \item{Alternatively e.g. \textasciitilde4 means the same as \^{}\^{}\^{}\^{}.}
-      \item{Example: \code{git checkout master\^{}\^{}}.}
     \end{itemize}
   \end{block}
 \end{frame}
 
+\begin{frame}{DAG manipulation}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Much (but not all) of your interaction with a git repository involves maintaining and amending the DAG and the pointers to nodes in the DAG.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
 \begin{frame}{The index}
   \begin{block}{}
     \begin{itemize}
-      \item{A git repository contains an \textit{index}, which is a list of the files in the working directory that git knows about (i.e. that git is `tracking'.}
-      \item{The \textit{index} contains other information that makes it fast to answer the question `has this file changed since a version of it was last put into the repository?'}
+      \item{In addition to the DAG, a git repository also contains an \textit{index}: a list of the files in the working directory that git knows about (i.e. that git is `tracking'.}
+      \item{The index contains other information that makes it fast to answer the question `has this file changed since a version of it was last put into the repository?'}
     \end{itemize}
   \end{block}
   \begin{block}{}
@@ -373,24 +382,134 @@
   \end{block}
 \end{frame}
 
+\begin{frame}{.gitignore}
+  \begin{block}{}
+    \begin{itemize}
+      \item{\code{git status} will warn you about files that \textbf{are} in the working directory but \textbf{aren't} in the index (so that git isn't paying attention to them).}
+      \item{This gets boring for intermediate files that you never want git to track. So you can list such `files always to be ignored by git' in a special file called .gitignore.}
+      \item{So you probably want .gitignore to be one of the files that git is tracking.}
+    \end{itemize}
+  \end{block}
+  \begin{block}{}
+    \begin{center}
+      \includegraphics[scale=0.8]{gitignore.png}
+    \end{center}
+  \end{block}
+\end{frame}
 
-\begin{frame}{git operations}
-  \begin{block}{Three types of git operations}
+\begin{frame}{So three possibilities...}
+  \begin{block}{}
+    \begin{itemize}
+      \item{The index lists the files that git is tracking. (Use \code{git ls-files --stage} to view the index.)}
+      \item{The special file .gitignore lists the files that git knows not to track.}
+      \item{\code{git status} will warn you about files that are not in either category.}
+      \item{Use \code{git add <filename>} to add a file to the index.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}{Three types of git operations}
+  \begin{block}{}
     \begin{itemize}
       \item{Managing the relation between a repository and its associated working directory.}
       \item{Repository maintenance.}
-      \item{Managing the relation between two repositories.}
+      \item{Managing the relation between two repositories (e.g. between your local repository and a copy that is on the Internet).}
     \end{itemize}
   \end{block}
 \end{frame}
 
 \begin{frame}{Repository $\leftrightarrow$ working directory (1)}
-  \begin{block}{Things you can do:}
+  \begin{block}{}
     \begin{itemize}
       \item{See a description of the relationship between the repository and the working directory: \code{git status}.}
+    \end{itemize}
+  \end{block}
+  \begin{block}{}
+    \begin{center}
+      \includegraphics[scale=0.8]{status.png}
+    \end{center}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Repository $\leftrightarrow$ working directory (2)}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Tell the repository's index about a new file in the working directory that you want the repository to pay attention to: \code{git add <filename>}.}
       \item{Check-in the (changed) files that are in the working directory, thereby creating a new node: \code{git commit -a}. TODO: WHAT EXACTLY DEFINES THE PARENT OF THIS NEW NODE?}
-      \item{Tell the repository about a new file in the working directory that you want the repository to pay attention to: \code{git add <filename>}. This does not do a commit!}
-      \item{Make the working directory be equal to the contents of a specific node: \code{git checkout <nodename>}. This fails if there are uncommited changes in the working directory.}
+      \item{Using the \code{-a} option with \code{commit} minimizes your interaction with the index. There are alternatives that are more work but that give you more control.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Repository $\leftrightarrow$ working directory (3)}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Make the working directory be equal to the contents of a specific node: \code{git checkout <nodename>}.}
+      \item{This fails if there are uncommited changes in the working directory.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Repository maintenance (1)}
+  \begin{figure}
+    \begin{center}
+      \begin{tikzpicture}[font=\ttfamily]
+        \node (A) at (-3,5) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {A};
+        \node (B) at (-0.125,6) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {B};
+        \node (C) at (0.125,4) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {C};
+        \node (D) at (3,5) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {D};
+        \draw [->,thick] (A.east) -- (B.west) node [midway,left] {};
+        \draw [->,thick] (A.east) -- (C.west) node [midway,left] {};
+        \draw [->,thick] (B.east) -- (D.west) node [midway,left] {};
+        \draw [->,thick] (C.east) -- (D.west) node [midway,left] {};
+      \end{tikzpicture}
+    \end{center}
+  \end{figure}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Merge two nodes (here, B and C) to form a new node D with both B and C as its parents.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Merging (1)}
+  \begin{figure}
+    \begin{center}
+      \begin{tikzpicture}[font=\ttfamily]
+        \node (A) at (-3,5) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {A};
+        \node (B) at (-0.125,6) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {B};
+        \node (C) at (0.125,4) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {C};
+        \node (D) at (3,5) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {D};
+        \draw [->,thick] (A.east) -- (B.west) node [midway,left] {};
+        \draw [->,thick] (A.east) -- (C.west) node [midway,left] {};
+        \draw [->,thick] (B.east) -- (D.west) node [midway,left] {};
+        \draw [->,thick] (C.east) -- (D.west) node [midway,left] {};
+      \end{tikzpicture}
+    \end{center}
+  \end{figure}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Merging requires B and C to have a common ancestor (A in the above example). In git this will always be the case.}
+      \item{Form the union of the `A to B' changes and the `A to C' changes. Then apply these united changes to A; this gives D.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Merging (2)}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Perhaps the `A to B' changes and the `A to C' changes are in conflict. For example, both sets of changes might amend a certain line, but in different ways.}
+      \item{In this case the merge will fail, and you will have to manually edit D to choose one set of changes or the other (they will both be present in D, with special characters inserted to let you see what is going on).}
+      \item{At merge time the `level of granularity' is the line (if I amend the start of a line and you amend the end of the same line, then the merge will still fail.) Note that binary files can't be merged.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Rebase}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Foo.}
     \end{itemize}
   \end{block}
 \end{frame}

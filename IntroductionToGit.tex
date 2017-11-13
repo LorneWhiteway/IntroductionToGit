@@ -499,6 +499,7 @@
 \begin{frame}{Merging (2)}
   \begin{block}{}
     \begin{itemize}
+      \item{`Changes' include: adding files, deleting files, and amending files (by adding lines, deleting lines, or amending lines).}
       \item{Perhaps the `A to B' changes and the `A to C' changes are in conflict. For example, both sets of changes might amend a certain line, but in different ways.}
       \item{In this case the merge will fail, and you will have to manually edit D to choose one set of changes or the other (they will both be present in D, with special characters inserted to let you see what is going on).}
       \item{At merge time the `level of granularity' is the line (if I amend the start of a line and you amend the end of the same line, then the merge will still fail.) Note that binary files can't be merged.}
@@ -506,13 +507,88 @@
   \end{block}
 \end{frame}
 
-\begin{frame}{Rebase}
+\begin{frame}{Rebase (1)}
   \begin{block}{}
     \begin{itemize}
-      \item{Foo.}
+      \item{\textit{Rebase} is similar to merge, in that it allows two separate development streams to be brought together.}
+      \item {However, the mental picture with rebase is `move the A to C arrow so that it starts from B instead of from A'.}
+      \item {Alternatively can think of this as being a `cut and paste' to move part of the DAG from one place to another.}
     \end{itemize}
   \end{block}
 \end{frame}
+
+\begin{frame}{Rebase (2)}
+  \begin{figure}
+    \begin{center}
+      \begin{tikzpicture}[font=\ttfamily]
+        \node[] at (-5,5) {Before};
+        \node (A) at (-3,5) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {A};
+        \node (B) at (-0.125,6) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {B};
+        \node (C) at (0.125,4) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {C};
+        \draw [->,thick] (A.east) -- (B.west) node [midway,left] {};
+        \draw [->,thick,red] (A.east) -- (C.west) node [midway,left] {};
+
+        \node[] at (-5,1) {After};
+        \node (A1) at (-3,1) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {A};
+        \node (B1) at (-1,1) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {B};
+        \node (D) at (1,1) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {D};
+        \draw [->,thick] (A1.east) -- (B1.west) node [midway,left] {};
+        \draw [->,thick,red] (B1.east) -- (D.west) node [midway,left] {};
+      \end{tikzpicture}
+    \end{center}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Cherry-pick (1)}
+  \begin{block}{}
+    \begin{itemize}
+      \item{\textit{Cherry-pick} is similar to rebase, except that it is a `copy and paste' instead of a `cut and paste'.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Cherry-pick (2)}
+  \begin{figure}
+    \begin{center}
+      \begin{tikzpicture}[font=\ttfamily]
+        \node[] at (-5,5) {Before};
+        \node (A) at (-3,5) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {A};
+        \node (B) at (-0.125,6) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {B};
+        \node (C) at (0.125,4) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {C};
+        \draw [->,thick] (A.east) -- (B.west) node [midway,left] {};
+        \draw [->,thick,red] (A.east) -- (C.west) node [midway,left] {};
+
+        \node[] at (-5,2) {After};
+        \node (A1) at (-3,1) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {A};
+        \node (B1) at (-1,2) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {B};
+        \node (C1) at (-1,0) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {C};
+        \node (D) at (1,2) [rectangle, draw,minimum height=1cm, minimum width=1cm, align=center, fill=YellowGreen] {D};
+        \draw [->,thick,red] (A1.east) -- (C1.west) node [midway,left] {};
+        \draw [->,thick] (A1.east) -- (B1.west) node [midway,left] {};
+        \draw [->,thick,red] (B1.east) -- (D.west) node [midway,left] {};
+      \end{tikzpicture}
+    \end{center}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Pointer maintenance}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Tags and branches can be created, moved and deleted.}
+      \item{Recall that a branch is just a pointer to a node. So moving a branch doesn't involve any rearrangement of the DAG - it means simply changing the node to which the branch points.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Node cleanup}
+  \begin{block}{}
+    \begin{itemize}
+      \item{If a node is not `named' (i.e. pointed to by a tag or a branch), and if none of its descendents are named either, then git considers it unneeded and will delete it the next time it does `automatic cleanup'.}
+      \item{Recall that a branch is just a pointer to a node. So moving a branch doesn't involve any rearrangement of the DAG - it means simply changing the node to which the branch points.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
 
 
 \end{document}

@@ -657,16 +657,30 @@
     \begin{itemize}
       \item{Of course, the local and remote repositories may have diverged since the clone in inconsistent ways.}
       \item{In this case the necessary merging will fail and manual intevention will be needed.}
+      \item{TODO: can I say more here?}
     \end{itemize}
   \end{block}
 \end{frame}
 
-
-\begin{frame}{TODO}
-  \begin{block}{List of slides still to be created}
+\begin{frame}{Remote tracking branches}
+  \begin{block}{}
     \begin{itemize}
-      \item{Handling merge conflicts during push and pull}
-      \item{Difference between pull and fetch; remote tracking branches}
+      \item{A cloned repository will have two types of branches: not only normal local branches but also \textit{remote tracking branches} that mirror what is going on in the remote repository.}
+    \end{itemize}
+  \end{block}
+  \begin{block}{}
+    \begin{center}
+      \includegraphics[scale=0.8]{RemoteTrackingBranch.png}
+    \end{center}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Fetch and merge equals pull}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Use \code{git fetch} to update a remote tracking branch (to get changes from the remote repository); \textbf{this won't affect any local branches}.}
+      \item{You can then use \code{git merge} to merge the remote tracking branch into the local branch.}
+      \item{These two operations (\code{git fetch} followed by \code{git merge}) are the same as a \code{git pull}; by doing the job in to stages you can pause after the fetch to inspect what changes you have brought down from the remote repository.}
     \end{itemize}
   \end{block}
 \end{frame}

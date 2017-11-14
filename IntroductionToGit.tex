@@ -66,14 +66,14 @@
 \end{frame}
 
 
-\begin{frame}{git isn't optimal}
+\begin{frame}{git isn't perfect}
   \begin{block}{}
     \begin{itemize}
       \item{The internal model is complicated.}
       \item{The interface is inconsistent.}
       \item{The documentation is suboptimal.}
       \item{Several key ideas have been given misleading names.}
-      \item{It uses a `distributed' model whereas what you usually want is a `client/server' model. So you tend to be `fighting against the paradigm'...}
+      \item{It uses a `distributed' model whereas often what you want is a `client/server' model. So you tend to be `fighting against the paradigm'.}
       \item{See more at \url{https://stevebennett.me/2012/02/24/10-things-i-hate-about-git/}.}
     \end{itemize}
   \end{block}
@@ -84,7 +84,7 @@
   \begin{block}{}
     \begin{itemize}
       \item{Source control is software to `keep track of' (i.e. store) successive versions as we edit a collection of \textit{source} files (computer code, \LaTeX{} documents, etc.)}
-      \item{Works better on source files that are text, not binary. Intermediate files are usually not kept track of. Output files might be - your choice.}
+      \item{Works better on source files that are text, not binary. Intermediate files are usually not kept track of. Output files might be - it's your choice.}
       \item{Any serious project should be under source control.}
     \end{itemize}
   \end{block}
@@ -97,7 +97,7 @@
       \item{You need a \textit{working directory} and a \textit{repository}.}
       \item{The working directory and its subdirectories contain the actual files that you are editing.}
       \item{The repository is some sort of database containing all previous versions.}
-      \item{One model would be to put the repository on the Internet or Intranet where everyone can see it...}
+      \item{One model would be to put the repository on the Internet or Intranet where all developers can see it...}
     \end{itemize}
   \end{block}
 \end{frame}
@@ -119,11 +119,11 @@
   \begin{block}{}
     \begin{itemize}
       \item{You therefore need to have a git repository next to your working directory on your local directory (where you are doing the actual editing).}
-      \item{But typically you will also need one on the internet (for backup and for collaboration and sharing).}
-      \item{So you will typically be dealing with \textbf{two} git repositories (and dealing with the issues of keeping them in synch.}
+      \item{But typically you will also need one on the Internet (for backup and for collaboration and sharing).}
+      \item{So you will typically be dealing with \textbf{two} git repositories (and dealing with the issues of keeping them in synch).}
     \end{itemize}
     \begin{itemize}
-      \item{The upside is that you can still do version control even if you are not connected to the Internet.}
+      \item{One upside is that you can still do source control even if you are not connected to the Internet.}
     \end{itemize}
   \end{block}
 \end{frame}
@@ -250,7 +250,7 @@
   \begin{block}{}
     At least:
     \begin{itemize}
-      \item{Pointers to enough information to reconstruct the working directory as of that instant.}
+      \item{Enough information to reconstruct the working directory as of that instant.}
       \item{Administrative information: who made the commit, a `commit message', etc.}
       \item{A permanent node name (SHA1 format - 40 hex digits e.g. c2d2ea34cec13a0956488f2b919861fccad8a448). You can abbreviate this to an initial substring (provided that it is long enough to be unique).}
     \end{itemize}
@@ -436,7 +436,7 @@
   \begin{block}{}
     \begin{itemize}
       \item{Tell the repository's index about a new file in the working directory that you want the repository to pay attention to: \code{git add <filename>}.}
-      \item{Check-in the (changed) files that are in the working directory, thereby creating a new node: \code{git commit -a}. TODO: WHAT EXACTLY DEFINES THE PARENT OF THIS NEW NODE?}
+      \item{Check-in the (changed) files that are in the working directory, thereby creating a new node: \code{git commit -a}.}
       \item{Using the \code{-a} option with \code{commit} minimizes your interaction with the index. There are alternatives that are more work but that give you more control.}
     \end{itemize}
   \end{block}
@@ -522,7 +522,8 @@
   \begin{block}{}
     \begin{itemize}
       \item{\textit{Rebase} is similar to merge, in that it allows two separate development streams to be brought together.}
-      \item{However, the mental picture with rebase is `move the A to C arrow so that it starts from B instead of from A'.}
+      \item{However it differs in that one of the branches is then eliminated.}
+      \item{A mental picture to use with rebase is `move the A to C arrow so that it starts from B instead of from A'.}
       \item{Alternatively can think of this as being a `cut and paste' to move part of the DAG from one place to another.}
     \end{itemize}
   \end{block}
@@ -664,7 +665,6 @@
     \begin{itemize}
       \item{Of course, the local and remote repositories may have diverged since the clone in inconsistent ways.}
       \item{In this case the necessary merging will fail and manual intevention will be needed.}
-      \item{TODO: can I say more here?}
     \end{itemize}
   \end{block}
 \end{frame}

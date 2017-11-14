@@ -25,17 +25,9 @@
 
 
 \title{Introduction to git}
-
-\author{Lorne Whiteway \\ lorne.whiteway@star.ucl.ac.uk}
-
-\institute[UCL]
-{
-  Astrophysics Group\\
-  Department of Physics and Astronomy\\
-  University College London
-}
-\date
-{17 November 2017}
+\author{Lorne Whiteway \\ lorne.whiteway@star.ucl.ac.uk \\ Thanks to Tomas James for assistance}
+\institute{Astrophysics Group \\ Department of Physics and Astronomy \\ University College London}
+\date{17 November 2017}
 
 \subject{IT}
 
@@ -93,7 +85,7 @@
   \begin{block}{}
     \begin{itemize}
       \item{Source control is software to `keep track of' (i.e. store) successive versions as we edit a collection of \textit{source} files (computer code, \LaTeX{} documents, etc.)}
-      \item{Works best if the source is text, not binary. Intermediate files are usually not kept track of. Output files might be - your choice.}
+      \item{Works better on source files that are text, not binary. Intermediate files are usually not kept track of. Output files might be - your choice.}
       \item{Any serious project should be under source control.}
     \end{itemize}
   \end{block}
@@ -313,7 +305,7 @@
   \begin{block}{}
     \begin{itemize}
       \item{When git creates a new repository it creates a branch called `master' that points to the root node.}
-      \item{In the git community `master' is usually taken to mean `the main development line' and house rules often insist that the node pointed to by `master' be `good' (i.e. stable, tested, usable).}
+      \item{House rules often insist that the node pointed to by `master' be `good' (i.e. stable, tested, usable); development is then done in other branches that are merged into master following testing and agreement.}
       \item{But this is not forced by git. You don't even need to have a master branch.}
     \end{itemize}
   \end{block}
@@ -323,6 +315,7 @@
   \begin{block}{}
     \begin{itemize}
       \item{The special pointer HEAD points to the node that corresponds to the files in the working directory. This can be any node in the DAG.}
+      \item{ Use \code{git checkout <nodename>} to set where HEAD points.}
       \item{In gitk the HEAD node is shown in yellow.}
     \end{itemize}
   \end{block}
@@ -371,7 +364,7 @@
 \begin{frame}{The index}
   \begin{block}{}
     \begin{itemize}
-      \item{In addition to the DAG, a git repository also contains an \textit{index}: a list of the files in the working directory that git knows about (i.e. that git is `tracking'.}
+      \item{In addition to the DAG, a git repository also contains an \textit{index}: a list of the files in the working directory that git knows about (i.e. that git is `tracking').}
       \item{The index contains other information that makes it fast to answer the question `has this file changed since a version of it was last put into the repository?'}
     \end{itemize}
   \end{block}
@@ -445,6 +438,17 @@
 \begin{frame}{Repository $\leftrightarrow$ working directory (3)}
   \begin{block}{}
     \begin{itemize}
+      \item{Use the \code{-m} option to \code{git commit} to provide a `message' that will be associated with the commit.} 
+      \item{Example: \code{git commit -a -m `Fixed divide-by-zero error.'}}
+      \item{Or omit the \code{-m} in which case a text editor window will open and you can type a longer message.}
+      \item{Writing good commit messages itself is an art; see for example \url{https://medium.com/@steveamaza/how-to-write-a-propergit-commit-message-e028865e5791}}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Repository $\leftrightarrow$ working directory (4)}
+  \begin{block}{}
+    \begin{itemize}
       \item{Make the working directory be equal to the contents of a specific node: \code{git checkout <nodename>}.}
       \item{This fails if there are uncommited changes in the working directory.}
     \end{itemize}
@@ -501,7 +505,7 @@
     \begin{itemize}
       \item{`Changes' include: adding files, deleting files, and amending files (by adding lines, deleting lines, or amending lines).}
       \item{Perhaps the `A to B' changes and the `A to C' changes are in conflict. For example, both sets of changes might amend a certain line, but in different ways.}
-      \item{In this case the merge will fail, and you will have to manually edit D to choose one set of changes or the other (they will both be present in D, with special characters inserted to let you see what is going on).}
+      \item{In this case the merge will fail, and you will have to manually edit D to choose one set of changes or the other (they will both be present in D, with special characters inserted to let you see what is going on). Specialised text editors can be helpful here.}
       \item{At merge time the `level of granularity' is the line (if I amend the start of a line and you amend the end of the same line, then the merge will still fail.) Note that binary files can't be merged.}
     \end{itemize}
   \end{block}
@@ -511,8 +515,8 @@
   \begin{block}{}
     \begin{itemize}
       \item{\textit{Rebase} is similar to merge, in that it allows two separate development streams to be brought together.}
-      \item {However, the mental picture with rebase is `move the A to C arrow so that it starts from B instead of from A'.}
-      \item {Alternatively can think of this as being a `cut and paste' to move part of the DAG from one place to another.}
+      \item{However, the mental picture with rebase is `move the A to C arrow so that it starts from B instead of from A'.}
+      \item{Alternatively can think of this as being a `cut and paste' to move part of the DAG from one place to another.}
     \end{itemize}
   \end{block}
 \end{frame}
@@ -537,6 +541,16 @@
       \end{tikzpicture}
     \end{center}
   \end{figure}
+\end{frame}
+
+\begin{frame}{Rebase (3)}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Rebase yields a cleaner DAG than merge does - this is a possible argument in favour of rebase.}
+      \item{Rebase `rewrites history' (in the above example, node C will disappear) - this is a possible argument against rebase.}
+      \item{You will need to decide which to use.}
+    \end{itemize}
+  \end{block}
 \end{frame}
 
 \begin{frame}{Cherry-pick (1)}
@@ -614,6 +628,7 @@
   \begin{block}{}
     \begin{itemize}
       \item{Github (\url{https://github.com/}) and BitBucket (\url{https://bitbucket.org/}) are websites for hosting git repositories.}
+      \item{They allow various levels of read access and write access to these repositories.}
     \end{itemize}
   \end{block}
 \end{frame}
@@ -637,18 +652,47 @@
   \end{block}
 \end{frame}
 
-\begin{frame}{TODO}
-  \begin{block}{List of slides still to be created}
+\begin{frame}{Interactions between two repositories (4)}
+  \begin{block}{}
     \begin{itemize}
-      \item{Handling merge conflicts during push and pull}
-      \item{Difference between pull and fetch; remote tracking branches}
-      \item{Github forking and pull requests}
-      \item{Deciding which git workflow to use}
+      \item{Of course, the local and remote repositories may have diverged since the clone in inconsistent ways.}
+      \item{In this case the necessary merging will fail and manual intevention will be needed.}
     \end{itemize}
   \end{block}
 \end{frame}
 
 
+\begin{frame}{TODO}
+  \begin{block}{List of slides still to be created}
+    \begin{itemize}
+      \item{Handling merge conflicts during push and pull}
+      \item{Difference between pull and fetch; remote tracking branches}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Github forking and pull requests}
+  \begin{block}{}
+    \begin{itemize}
+      \item{\textit{Forking} is a GitHub innovation to help people contribute to projects to which they don't have write access.}
+      \item{It uses a `three repository' model.}
+      \item{Begin by cloning repository R1 (to which you don't have write access) to get a new repository R2 (to which you do have write access) \textbf{that is also on GitHub} - this is called forking.}
+      \item{Then develop in R2 as usual (this will invloves you cloning R2 to get a local copy R3).}
+      \item{Once your work is pushed to R2 you email the owners of R1 to ask them to pull your changes from R2 to R1 (\textit{pull request}).}
+      \item{If all contributors are `trusted contributors' then this level of complexity is probably not needed.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Workflows with git}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Many different workflows are possible with git.}
+      \item{You will need to choose - it's a matter of project objective, project size, team size, team working style, taste, etc..}
+      \item{Several are discussed here: \url{https://www.atlassian.com/git/tutorials/comparing-workflows}.}
+    \end{itemize}
+  \end{block}
+\end{frame}
 
 
 \end{document}

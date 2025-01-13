@@ -111,7 +111,7 @@
 \end{frame}
 
 
-\begin{frame}{Location of git repositiory}
+\begin{frame}{Location of git repository}
   \begin{block}{}
     \begin{itemize}
       \item{... But in git the repository is \textbf{next to} the working directory, in a hidden subdirectory (called .git) of the top-level working directory.}
@@ -302,8 +302,8 @@
   \end{block}
   \begin{block}{}
     %\begin{center}
-      \includegraphics[width=0.5\textwidth]{Branch_1.png}%
-      \includegraphics[width=0.5\textwidth]{Branch_2.png}
+      \includegraphics[width=0.58\textwidth]{Branch_1.png}%
+      \includegraphics[width=0.42\textwidth]{Branch_2.png}
     %\end{center}
   \end{block}
 \end{frame}
@@ -334,8 +334,8 @@
 \begin{frame}{Pointers to nodes - branches (4)}
   \begin{block}{}
     \begin{itemize}
-      \item{When git creates a new repository it creates a branch - by default called `main' (formerly `master') - that points to the root node.}
-      \item{House rules often insist that the node pointed to by `main' be `good' (i.e. stable, tested, usable); development is then done in other branches that are merged into master following testing and agreement.}
+      \item{When git creates a new repository it creates a branch - by default called `main' - that points to the root node.}
+      \item{House rules often insist that the node pointed to by `main' be `good' (i.e. stable, tested, usable); development is then done in other branches that are merged into main following testing and agreement.}
       \item{But this is not forced by git. You don't even need to have a `main' branch.}
     \end{itemize}
   \end{block}
@@ -375,7 +375,7 @@
       \item{Refer to a node using its (abbreviated) SHA1 name e.g. `c2d2ea34'.}
       \item{Or use a pointer name (a tag name, a branch name, or the name `HEAD').}
       \item{Can append \^{} to mean `parent of', \^{}\^{} to mean `grandparent', etc.}
-      \item{Example: \code{git checkout master\^{}\^{}}.}
+      \item{Example: \code{git checkout main\^{}\^{}}.}
       \item{Distinguish multiple parents via \^{}1 or \^{}2.}
       \item{Alternatively e.g. \textasciitilde4 means the same as \^{}\^{}\^{}\^{}.}
     \end{itemize}
@@ -669,7 +669,7 @@
     \begin{itemize}
       \item{Use \code{git push} to make the remote repository look like the local repository.}
       \item{The full syntax is \code{git push <remote> <branch>}.}
-      \item{Thus for example you might need to say \code{git push origin master}.}
+      \item{Thus for example you might need to say \code{git push origin main}.}
     \end{itemize}
   \end{block}
 \end{frame}

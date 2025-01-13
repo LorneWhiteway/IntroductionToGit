@@ -18,18 +18,13 @@
 \definecolor{light-gray}{gray}{0.95}
 \newcommand{\code}[1]{\colorbox{light-gray}{\texttt{#1}}}
 
-
-
 \usetheme{boxes}
 \usecolortheme{beaver}
 
-
 \title{Introduction to git}
-\author{Lorne Whiteway \\ lorne.whiteway@star.ucl.ac.uk \\ Thanks to Tomas James for assistance}
+\author{Lorne Whiteway \\ lorne.whiteway.13@ucl.ac.uk}
 \institute{Astrophysics Group \\ Department of Physics and Astronomy \\ University College London}
-\date{17 November 2017}
-
-\subject{IT}
+\date{16 January 2025}
 
 \begin{document}
 
@@ -84,8 +79,21 @@
   \begin{block}{}
     \begin{itemize}
       \item{Source control is software to `keep track of' (i.e. store) successive versions as we edit a collection of \textit{source} files (computer code, \LaTeX{} documents, etc.)}
-      \item{Works better on source files that are text, not binary. Intermediate files are usually not kept track of. Output files might be - it's your choice.}
+      \item{More efficient on source files that are text, not binary. Intermediate files are usually not kept track of. Output files might be - it's your choice.}
       \item{Any serious project should be under source control.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}{Any serious project should be under source control}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Source control is insurance: there is a small daily cost to having it, but occasionally it provides a massive benefit.}
+      \item{Source control protects you against damage to your files (e.g. fire, flood, misplacement, theft, virus, ransomware).}
+      \item{Source control protects you against edits to your files that you later regret, as you can revert to an old version. This makes it easier to experiment (as changes can be undone).}
+      \item{Source control allows multiple people to work simultaneously on the same files (as their various changes can be merged).}
+      \item{Source control allows auditing and blaming (as it can identify the author of a given change).}
     \end{itemize}
   \end{block}
 \end{frame}
@@ -109,7 +117,7 @@
       \item{... But in git the repository is \textbf{next to} the working directory, in a hidden subdirectory (called .git) of the top-level working directory.}
     \end{itemize}
     \begin{center}
-      \includegraphics[scale=0.5]{ls_output.png}
+      \includegraphics[scale=0.45]{ls_output.png}
     \end{center}
   \end{block}
 \end{frame}
@@ -119,7 +127,20 @@
   \begin{block}{}
     \begin{itemize}
       \item{You therefore need to have a git repository next to your working directory on your local directory (where you are doing the actual editing).}
-      \item{But typically you will also need one on the Internet (for backup, for collaboration and sharing, and to act as a reference version).}
+      \item{But this doesn't give you any protection against physical damage to the disk!}
+      \item{Also, it doesn't let anyone else see your code, so it doesn't help collaboration.}
+    \end{itemize}
+    \begin{itemize}
+      \item{One upside is that you can still do source control even if you are not connected to the Internet.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}{Two git repositories}
+  \begin{block}{}
+    \begin{itemize}
+      \item{So typically you will also need \textbf{another} git repository on the Internet (for backup, for collaboration and sharing, and to act as a reference version).}
       \item{So you will typically be dealing with \textbf{two} git repositories (and dealing with the issues of keeping them in synch).}
     \end{itemize}
     \begin{itemize}
@@ -127,6 +148,8 @@
     \end{itemize}
   \end{block}
 \end{frame}
+
+
 
 
 \begin{frame}{Example repository content}
@@ -188,7 +211,7 @@
   \begin{block}{}
     \begin{itemize}
       \item{An arrow respects time (pointing from an earlier version to a later version), and indicates that a node was derived from an earlier node by editing.}
-      \item{Q: There exists a set of edits that would take you from B to C, so why not show that arrow as well? A: It's an \textit{itinerary} (showing the route we took), not a \textit{map} of all possible routes.}
+      \item{Q: There exists a set of edits that would take you from B to C, so why not show that arrow as well? A: It's a historical record of the route we actually took, not a map of all possible routes.}
     \end{itemize}
   \end{block}
 \end{frame}
@@ -311,9 +334,9 @@
 \begin{frame}{Pointers to nodes - branches (4)}
   \begin{block}{}
     \begin{itemize}
-      \item{When git creates a new repository it creates a branch called `master' that points to the root node.}
-      \item{House rules often insist that the node pointed to by `master' be `good' (i.e. stable, tested, usable); development is then done in other branches that are merged into master following testing and agreement.}
-      \item{But this is not forced by git. You don't even need to have a master branch.}
+      \item{When git creates a new repository it creates a branch - by default called `main' (formerly `master') - that points to the root node.}
+      \item{House rules often insist that the node pointed to by `main' be `good' (i.e. stable, tested, usable); development is then done in other branches that are merged into master following testing and agreement.}
+      \item{But this is not forced by git. You don't even need to have a `main' branch.}
     \end{itemize}
   \end{block}
 \end{frame}

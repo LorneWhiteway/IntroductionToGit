@@ -30,7 +30,6 @@
 
 \frame{\titlepage}
 
-
 \begin{frame}{Where to find this presentation}
   \begin{block}{}
     Find the presentation at \alert{\url{https://tinyurl.com/y8pr4mvq}}.\\
@@ -86,14 +85,14 @@
 \end{frame}
 
 
-\begin{frame}{Any serious project should be under source control}
+\begin{frame}{Source control...}
   \begin{block}{}
     \begin{itemize}
-      \item{Source control is insurance: there is a small daily cost to having it, but occasionally it provides a massive benefit.}
-      \item{Source control protects you against damage to your files (e.g. fire, flood, misplacement, theft, virus, ransomware).}
-      \item{Source control protects you against edits to your files that you later regret, as you can revert to an old version. This makes it easier to experiment (as changes can be undone).}
-      \item{Source control allows multiple people to work simultaneously on the same files (as their various changes can be merged).}
-      \item{Source control allows auditing and blaming (as it can identify the author of a given change).}
+      \item{... is insurance: there is a small daily cost to having it, but occasionally it provides a massive benefit.}
+      \item{... protects you against damage to your files (e.g. hard drive failure, fire, flood, misplacement, accidental deletion, theft, virus, ransomware, ...).}
+      \item{... protects you against edits to your files that you later regret, as you can revert to an old version. This makes it easier to experiment (as changes can be undone).}
+      \item{... allows multiple people to work simultaneously on the same files (as their various changes can be merged).}
+      \item{... allows auditing and blaming (as it can identify the author of a given change).}
     \end{itemize}
   \end{block}
 \end{frame}
@@ -123,13 +122,14 @@
 \end{frame}
 
 
-\begin{frame}{This has consequences...}
+\begin{frame}{This repository location isn't ideal...}
   \begin{block}{}
     \begin{itemize}
-      \item{You therefore need to have a git repository next to your working directory on your local directory (where you are doing the actual editing).}
-      \item{But this doesn't give you any protection against physical damage to the disk!}
-      \item{Also, it doesn't let anyone else see your code, so it doesn't help collaboration.}
+      \item{Having the git repository next to your working directory on your local directory isn't ideal:}
+      \item{\ You don't get any protection against physical damage to the disk.}
+      \item{\ Others can't see your repository (bad for collaboration).}
     \end{itemize}
+    \vspace{1cm}
     \begin{itemize}
       \item{One upside is that you can still do source control even if you are not connected to the Internet.}
     \end{itemize}
@@ -137,18 +137,14 @@
 \end{frame}
 
 
-\begin{frame}{Two git repositories}
+\begin{frame}{So you usually need two git repositories}
   \begin{block}{}
     \begin{itemize}
       \item{So typically you will also need \textbf{another} git repository on the Internet (for backup, for collaboration and sharing, and to act as a reference version).}
       \item{So you will typically be dealing with \textbf{two} git repositories (and dealing with the issues of keeping them in synch).}
     \end{itemize}
-    \begin{itemize}
-      \item{One upside is that you can still do source control even if you are not connected to the Internet.}
-    \end{itemize}
   \end{block}
 \end{frame}
-
 
 
 
@@ -273,7 +269,7 @@
   \begin{block}{}
     At least:
     \begin{itemize}
-      \item{Enough information to reconstruct the working directory as of that instant.}
+      \item{Enough information to reconstruct the working directory as it was at the time of that commit.}
       \item{Administrative information: who made the commit, a `commit message', etc.}
       \item{A permanent node name (SHA1 format - 40 hex digits e.g. c2d2ea34cec13a0956488f2b919861fccad8a448). You can abbreviate this to an initial substring (provided that it is long enough to be unique).}
     \end{itemize}
@@ -445,7 +441,7 @@
 \begin{frame}{Repository $\leftrightarrow$ working directory (1)}
   \begin{block}{}
     \begin{itemize}
-      \item{See a description of the relationship between the repository and the working directory: \code{git status}.}
+      \item{To see a description of the relationship between the repository and the working directory: \code{git status}.}
     \end{itemize}
   \end{block}
   \begin{block}{}

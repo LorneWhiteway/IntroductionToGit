@@ -251,9 +251,7 @@
 
 \begin{frame}{Seeing the DAG}
   \begin{block}{}
-    \begin{itemize}
-      \item{Run \code{gitk --all} to see the DAG (lots of other information as well).}
-    \end{itemize}
+  Run \code{gitk --all} to see the DAG (\& much other information).
     \begin{center}
       \includegraphics[scale=0.8]{DAG.png}
     \end{center}
@@ -274,9 +272,7 @@
 
 \begin{frame}{Pointers to nodes - tags}
   \begin{block}{}
-    \begin{itemize}
-      \item{A \textit{tag} is a label that is attached to a node.}
-    \end{itemize}
+    A \textit{tag} is a label that is attached to a node.
     \begin{center}
       \includegraphics[scale=0.6]{Tag.png}
     \end{center}
@@ -400,12 +396,13 @@
 
 \begin{frame}{So three possibilities...}
   \begin{block}{}
-    \begin{itemize}
-      \item{The index lists the files that git is tracking. (Use \code{git ls-files --stage} to view the index.)}
-      \item{The special file .gitignore lists the files that git knows not to track.}
-      \item{\code{git status} will warn you about files that are not in either category.}
-      \item{Use \code{git add <filename>} to add a file to the index.}
-    \end{itemize}
+    \begin{enumerate}
+      \item{The index lists the files that git is tracking. (Use \code{git ls-files --stage} to view the index and \code{git add <filename>} to add a file to the index.)}
+      \vspace{5 mm}
+      \item{Special file .gitignore lists the files that git knows not to track.}
+      \vspace{5 mm}
+      \item{\code{git status} will warn you about files that are not in category $1$ or $2$.}
+    \end{enumerate}
   \end{block}
 \end{frame}
 
@@ -709,6 +706,17 @@
     \end{itemize}
   \end{block}
 \end{frame}
+
+\begin{frame}{Consider not using branches}
+  \begin{block}{}
+    \begin{itemize}
+      \item{Branching - i.e. creating branches other than `main' to use for development work - is a popular strategy but be careful as branches that don't get merged back into `main' in a timely fashion often end up being abandonded.}
+      \item{There are altenative workslows that \textit{never branch}. Here you use other methods to ensure separation of development and production code.}
+
+    \end{itemize}
+  \end{block}
+\end{frame}
+
 
 
 \end{document}

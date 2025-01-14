@@ -24,21 +24,11 @@
 \title{Introduction to git}
 \author{Lorne Whiteway \\ lorne.whiteway.13@ucl.ac.uk}
 \institute{Astrophysics Group \\ Department of Physics and Astronomy \\ University College London}
-\date{16 January 2025}
+\date{16 January 2025 \\ Find the presentation at \alert{\url{https://tinyurl.com/y8pr4mvq}}}
 
 \begin{document}
 
 \frame{\titlepage}
-
-\begin{frame}{Where to find this presentation}
-  \begin{block}{}
-    Find the presentation at \alert{\url{https://tinyurl.com/y8pr4mvq}}.\\
-  \end{block}
-  \begin{block}{}
-    On this page click on `Download' to get a copy of the presentation.
-  \end{block}
-\end{frame}
-
 
 \begin{frame}{Purpose of presentation}
   \begin{block}{}
@@ -58,7 +48,7 @@
       \item{The interface is inconsistent.}
       \item{The documentation is suboptimal.}
       \item{Several key ideas have been given misleading names.}
-      \item{It uses a `distributed' model whereas often what you want is a `client/server' model. So you tend to be `fighting against the paradigm'.}
+      \item{It uses a `distributed' model whereas often what you want is a `client/server' model; you may end up `fighting the paradigm'.}
       \item{See more at \url{https://stevebennett.me/2012/02/24/10-things-i-hate-about-git/}.}
     \end{itemize}
   \end{block}
@@ -124,15 +114,13 @@
 
 \begin{frame}{This repository location isn't ideal...}
   \begin{block}{}
+    Having the git repository next to your working directory isn't ideal:
     \begin{itemize}
-      \item{Having the git repository next to your working directory on your local directory isn't ideal:}
-      \item{\ You don't get any protection against physical damage to the disk.}
-      \item{\ Others can't see your repository (bad for collaboration).}
+      \item{No protection against physical damage to the disk.}
+      \item{Others can't see your repository (bad for collaboration).}
     \end{itemize}
     \vspace{1cm}
-    \begin{itemize}
-      \item{One upside is that you can still do source control even if you are not connected to the Internet.}
-    \end{itemize}
+    One upside is that you can still do source control even if you are not connected to the Internet.
   \end{block}
 \end{frame}
 
@@ -238,7 +226,7 @@
 \begin{frame}{DAG}
   \begin{block}{}
     \begin{itemize}
-      \item{Hence we get a graph (in the mathematical sense of nodes plus edges).}
+      \item{Hence we get a graph (in the mathematical sense of `nodes plus edges').}
       \item{The graph is not a \textit{tree} (because of merging).}
       \item{It is \textit{directed} (edges have arrows) and \textit{acyclic} (cycles would break causality), so we have a \textit{DAG} (directed acyclic graph).}
       \item{Nodes can have \textit{parents} and \textit{children}, and hence \textit{ancestors} and \textit{descendents}.}
@@ -251,7 +239,7 @@
 
 \begin{frame}{Seeing the DAG}
   \begin{block}{}
-  Run \code{gitk --all} to see the DAG (\& much other information).
+  Run \code{gitk --all} to see the DAG (and much other information).
     \begin{center}
       \includegraphics[scale=0.8]{DAG.png}
     \end{center}
@@ -272,7 +260,7 @@
 
 \begin{frame}{Pointers to nodes - tags}
   \begin{block}{}
-    A \textit{tag} is a label that is attached to a node.
+    A \textit{tag} is a label that is attached to a node; gitk shows them in yellow:
     \begin{center}
       \includegraphics[scale=0.6]{Tag.png}
     \end{center}
@@ -282,13 +270,14 @@
 \begin{frame}{Pointers to nodes - branches (1)}
   \begin{block}{}
     \begin{itemize}
-      \item{A \textit{branch} is a moveable label that is attached to a node.}
-      \item{Here `moveable' means that if you commit an edit to that node then the branch label moves to the child node.}
+      \item{A \textit{branch} is a moveable label that is attached to a node; gitk shows them in green.}
+      \item{`Moveable' means that if you commit an edit to that node then the branch label moves to the child node.}
     \end{itemize}
-    %\begin{center}
-      \includegraphics[width=0.58\textwidth]{Branch_1.png}%
-      \includegraphics[width=0.42\textwidth]{Branch_2.png}
-    %\end{center}
+    \vspace{5mm}
+    \begin{center}
+      \includegraphics[width=0.5\textwidth]{Branch_1.png}%
+      \includegraphics[width=0.5\textwidth]{Branch_2.png}
+    \end{center}
   \end{block}
 \end{frame}
   
@@ -666,7 +655,7 @@
 \begin{frame}{Remote tracking branches}
   \begin{block}{}
     \begin{itemize}
-      \item{A cloned repository will have two types of branches: not only normal local branches but also \textit{remote tracking branches} that mirror what is going on in the remote repository.}
+      \item{A cloned repository will have two types of branches: not only normal local branches but also \textit{remote tracking branches} (gitk shows them in reddish-brown) that mirror what is going on in the remote repository.}
     \end{itemize}
     \begin{center}
       \includegraphics[scale=0.8]{RemoteTrackingBranch.png}

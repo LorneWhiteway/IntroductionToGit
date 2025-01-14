@@ -77,7 +77,7 @@
 \begin{frame}{Source control}
   \begin{block}{}
     \begin{itemize}
-      \item{Source control is software to `keep track of' (i.e. store) successive versions as we edit a collection of \textit{source} files (computer code, \LaTeX{} documents, etc.)}
+      \item{Source control is software to `keep track of' (i.e. store) successive versions as we edit a collection of \textit{source} files (computer code, \LaTeX{} documents, HTML files, etc.)}
       \item{More efficient on source files that are text, not binary. Intermediate files are usually not kept track of. Output files might be - it's your choice.}
       \item{Any serious project should be under source control.}
     \end{itemize}
@@ -89,7 +89,7 @@
   \begin{block}{}
     \begin{itemize}
       \item{... is insurance: there is a small daily cost to having it, but occasionally it provides a massive benefit.}
-      \item{... protects you against damage to your files (e.g. hard drive failure, fire, flood, misplacement, accidental deletion, theft, virus, ransomware, ...).}
+      \item{... protects you against damage to your files (e.g. hard drive failure, fire, flood, misplacement, accidental deletion, theft, virus, ransomware, file damage due to OS bugs, ...).}
       \item{... protects you against edits to your files that you later regret, as you can revert to an old version. This makes it easier to experiment (as changes can be undone).}
       \item{... allows multiple people to work simultaneously on the same files (as their various changes can be merged).}
       \item{... allows auditing and blaming (as it can identify the author of a given change).}
@@ -203,13 +203,11 @@
         \draw [->,thick] (A.east) -- (C.west) node [midway,left] {};
       \end{tikzpicture}
     \end{center}
-  \end{figure}
-  \begin{block}{}
+    \end{figure}
     \begin{itemize}
       \item{An arrow respects time (pointing from an earlier version to a later version), and indicates that a node was derived from an earlier node by editing.}
       \item{Q: There exists a set of edits that would take you from B to C, so why not show that arrow as well? A: It's a historical record of the route we actually took, not a map of all possible routes.}
     \end{itemize}
-  \end{block}
 \end{frame}
 
 
@@ -256,8 +254,6 @@
     \begin{itemize}
       \item{Run \code{gitk --all} to see the DAG (lots of other information as well).}
     \end{itemize}
-  \end{block}
-  \begin{block}{}
     \begin{center}
       \includegraphics[scale=0.8]{DAG.png}
     \end{center}
@@ -281,8 +277,6 @@
     \begin{itemize}
       \item{A \textit{tag} is a label that is attached to a node.}
     \end{itemize}
-  \end{block}
-  \begin{block}{}
     \begin{center}
       \includegraphics[scale=0.6]{Tag.png}
     \end{center}
@@ -295,8 +289,6 @@
       \item{A \textit{branch} is a moveable label that is attached to a node.}
       \item{Here `moveable' means that if you commit an edit to that node then the branch label moves to the child node.}
     \end{itemize}
-  \end{block}
-  \begin{block}{}
     %\begin{center}
       \includegraphics[width=0.58\textwidth]{Branch_1.png}%
       \includegraphics[width=0.42\textwidth]{Branch_2.png}
@@ -319,8 +311,6 @@
       \item{A branch can point to any node in the DAG - not just to a terminal node (= node with no descendents).}
       \item{So `branch' is not a perfect metaphor; better is `pointer to a place where growth may occur' (which may be on the trunk).}
     \end{itemize}
-  \end{block}
-  \begin{block}{}
     \begin{center}
       \includegraphics[scale=0.4]{Branch_3.png}
     \end{center}
@@ -344,8 +334,6 @@
       \item{ Use \code{git checkout <nodename>} to set where HEAD points.}
       \item{In gitk the HEAD node is shown in yellow.}
     \end{itemize}
-  \end{block}
-  \begin{block}{}
     \begin{center}
       \includegraphics[scale=0.8]{Head.png}
     \end{center}
@@ -354,11 +342,7 @@
 
 \begin{frame}{Pointers to nodes - HEAD (2) - Detached HEAD}
   \begin{block}{}
-    \begin{itemize}
-      \item{Usually HEAD points to the same node as one of the branches. But it doesn't have to; if it doesn't then we say we have a `detached HEAD'.}
-    \end{itemize}
-  \end{block}
-  \begin{block}{}
+     Usually HEAD points to the same node as one of the branches. But it doesn't have to; if it doesn't then we say we have a `detached HEAD'.
     \begin{center}
       \includegraphics[scale=0.8]{DetachedHead.png}
     \end{center}
@@ -380,9 +364,7 @@
 
 \begin{frame}{DAG manipulation}
   \begin{block}{}
-    \begin{itemize}
-      \item{Much (but not all) of your interaction with a git repository involves maintaining and amending the DAG and the pointers to nodes in the DAG.}
-    \end{itemize}
+      Much (but not all) of your interaction with a git repository involves maintaining and amending the DAG and the pointers to nodes in the DAG.
   \end{block}
 \end{frame}
 
@@ -393,26 +375,26 @@
       \item{In addition to the DAG, a git repository also contains an \textit{index}: a list of the files in the working directory that git knows about (i.e. that git is `tracking').}
       \item{The index contains other information that makes it fast to answer the question `has this file changed since a version of it was last put into the repository?'}
     \end{itemize}
-  \end{block}
-  \begin{block}{}
     \begin{center}
-      \includegraphics[scale=0.7]{Index.png}
+      \includegraphics[scale=0.55]{Index.png}
     \end{center}
   \end{block}
 \end{frame}
+
 
 \begin{frame}{.gitignore}
   \begin{block}{}
     \begin{itemize}
       \item{\code{git status} will warn you about files that \textbf{are} in the working directory but \textbf{aren't} in the index (so that git isn't paying attention to them).}
-      \item{This gets boring for intermediate files that you never want git to track. So you can list such `files always to be ignored by git' in a special file called .gitignore.}
-      \item{So you probably want .gitignore to be one of the files that git is tracking.}
+      \item{This gets boring for intermediate files that you never want git to track. So you can list such `files always to be ignored by git' in a special file called .gitignore.
+    {\begin{center}
+     \includegraphics[scale=0.8]{gitignore.png}
+   \end{center}}}
+      \item{You probably want .gitignore to be one of the files that git is tracking.}
     \end{itemize}
-  \end{block}
-  \begin{block}{}
-    \begin{center}
-      \includegraphics[scale=0.8]{gitignore.png}
-    \end{center}
+    %\begin{center}
+     % \includegraphics[scale=0.8]{gitignore.png}
+    %\end{center}
   \end{block}
 \end{frame}
 
@@ -440,13 +422,9 @@
 
 \begin{frame}{Repository $\leftrightarrow$ working directory (1)}
   \begin{block}{}
-    \begin{itemize}
-      \item{To see a description of the relationship between the repository and the working directory: \code{git status}.}
-    \end{itemize}
-  \end{block}
-  \begin{block}{}
+    To see a description of the relationship between the repository and the working directory: \code{git status}.
     \begin{center}
-      \includegraphics[scale=0.8]{status.png}
+      \includegraphics[scale=0.7]{status.png}
     \end{center}
   \end{block}
 \end{frame}
@@ -693,8 +671,6 @@
     \begin{itemize}
       \item{A cloned repository will have two types of branches: not only normal local branches but also \textit{remote tracking branches} that mirror what is going on in the remote repository.}
     \end{itemize}
-  \end{block}
-  \begin{block}{}
     \begin{center}
       \includegraphics[scale=0.8]{RemoteTrackingBranch.png}
     \end{center}

@@ -33,9 +33,10 @@
 \begin{frame}{Purpose of presentation}
   \begin{block}{}
     \begin{itemize}
+      \item{git is a popular software package for version control.}
       \item{I don't want to teach you how to use git.}
       \item{Rather I want to illustrate (part of) git's `internal model' and to define certain key git terminology so that you will be better prepared to teach yourself git.}
-      \item{My examples assume you are calling git from the command-line. Friendlier interfaces to git exist - but you still need to know the underlying model to use them effectively.}
+      \item{My examples assume you are calling git from the command line. Friendlier interfaces to git exist - but you still need to know the underlying model to use them effectively.}
     \end{itemize}
   \end{block}
 \end{frame}
@@ -50,6 +51,7 @@
       \item{Several key ideas have been given misleading names.}
       \item{It uses a `distributed' model whereas often what you want is a `client/server' model; you may end up `fighting the paradigm'.}
       \item{See more at \url{https://stevebennett.me/2012/02/24/10-things-i-hate-about-git/}.}
+      \item{But it's popular, powerful, fast, economical on disk space, free, and open-source.}
     \end{itemize}
   \end{block}
 \end{frame}
@@ -64,18 +66,18 @@
 \end{frame}
 
 
-\begin{frame}{Source control}
+\begin{frame}{Version control}
   \begin{block}{}
     \begin{itemize}
-      \item{Source control is software to `keep track of' (i.e. store) successive versions as we edit a collection of \textit{source} files (computer code, \LaTeX{} documents, HTML files, etc.)}
+      \item{\textit{Version control} is software to `keep track of' (i.e. store) successive versions as we edit a collection of \textit{source} files (computer code, \LaTeX{} documents, HTML files, etc.)}
       \item{More efficient on source files that are text, not binary. Intermediate files are usually not kept track of. Output files might be - it's your choice.}
-      \item{Any serious project should be under source control.}
+      \item{Any serious project should be under version control.}
     \end{itemize}
   \end{block}
 \end{frame}
 
 
-\begin{frame}{Source control...}
+\begin{frame}{Version control...}
   \begin{block}{}
     \begin{itemize}
       \item{... is insurance: there is a small daily cost to having it, but occasionally it provides a massive benefit.}
@@ -120,7 +122,7 @@
       \item{Others can't see your repository (bad for collaboration).}
     \end{itemize}
     \vspace{1cm}
-    One upside is that you can still do source control even if you are not connected to the Internet.
+    One upside is that you can still do version control even if you are not connected to the Internet.
   \end{block}
 \end{frame}
 
@@ -331,6 +333,7 @@
     \begin{center}
       \includegraphics[scale=0.8]{DetachedHead.png}
     \end{center}
+    In this example the working directory contains the files from `two commits ago'.
   \end{block}
 \end{frame}
 

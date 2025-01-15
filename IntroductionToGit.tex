@@ -103,7 +103,7 @@
 \begin{frame}{Location of git repository}
   \begin{block}{}
     \begin{itemize}
-      \item{... But in git the repository is \textbf{next to} the working directory, in a hidden subdirectory (called .git) of the top-level working directory.}
+      \item{... But in git the repository is \textbf{part of} the working directory, in a hidden subdirectory (called .git) of the top-level working directory.}
     \end{itemize}
     \begin{center}
       \includegraphics[scale=0.45]{ls_output.png}
@@ -502,17 +502,6 @@
 \end{frame}
 
 \begin{frame}{Rebase (1)}
-  \begin{block}{}
-    \begin{itemize}
-      \item{\textit{Rebase} is similar to merge, in that it allows two separate development streams to be brought together.}
-      \item{However it differs in that one of the branches is then eliminated.}
-      \item{A mental picture to use with rebase is `move the A to C arrow so that it starts from B instead of from A'.}
-      \item{Alternatively can think of this as being a `cut and paste' to move part of the DAG from one place to another.}
-    \end{itemize}
-  \end{block}
-\end{frame}
-
-\begin{frame}{Rebase (2)}
   \begin{figure}
     \begin{center}
       \begin{tikzpicture}[font=\ttfamily]
@@ -534,6 +523,17 @@
   \end{figure}
 \end{frame}
 
+\begin{frame}{Rebase (2)}
+  \begin{block}{}
+    \begin{itemize}
+      \item{\textit{Rebase} is similar to merge, in that it allows two separate development streams to be brought together.}
+      \item{However it differs in that one of the branches is then eliminated.}
+      \item{A mental picture to use with rebase is `move the A to C arrow so that it starts from B instead of from A'.}
+      \item{Alternatively can think of this as being a `cut and paste' to move part of the DAG from one place to another.}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
 \begin{frame}{Rebase (3)}
   \begin{block}{}
     \begin{itemize}
@@ -545,14 +545,6 @@
 \end{frame}
 
 \begin{frame}{Cherry-pick (1)}
-  \begin{block}{}
-    \begin{itemize}
-      \item{\textit{Cherry-pick} is similar to rebase, except that it is a `copy and paste' instead of a `cut and paste'.}
-    \end{itemize}
-  \end{block}
-\end{frame}
-
-\begin{frame}{Cherry-pick (2)}
   \begin{figure}
     \begin{center}
       \begin{tikzpicture}[font=\ttfamily]
@@ -576,14 +568,23 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}{Pointer maintenance}
+\begin{frame}{Cherry-pick (2)}
   \begin{block}{}
     \begin{itemize}
-      \item{Tags and branches can be created, moved and deleted.}
-      \item{Recall that a branch is just a pointer to a node. So moving a branch doesn't involve any rearrangement of the DAG - it means simply changing the node to which the branch points.}
+      \item{\textit{Cherry-pick} is similar to rebase, except that it is a `copy and paste' instead of a `cut and paste'.}
     \end{itemize}
   \end{block}
 \end{frame}
+
+
+%\begin{frame}{Pointer maintenance}
+%  \begin{block}{}
+%    \begin{itemize}
+%      \item{Tags and branches can be created, moved and deleted.}
+%      \item{Recall that a branch is just a pointer to a node. So moving a branch doesn't involve any rearrangement of the DAG - it means simply changing the node to which the branch points.}
+%    \end{itemize}
+%  \end{block}
+%\end{frame}
 
 \begin{frame}{Node cleanup}
   \begin{block}{}
@@ -607,10 +608,10 @@
 \begin{frame}{Standard working procedure:}
   \begin{block}{}
     \begin{enumerate}
-      \item{Create a repository on the Internet;}
+      \item{Create a repository on the Internet (e.g. at Github or BitBucket);}
       \item{Clone it to make a local copy;}
-      \item{Use the commands described above to add and commit to the local repository;}
-      \item{Use commands to be described below to keep the local and remote repositories in sync.}
+      \item{Use the commands described \textit{above} to add and commit to the local repository;}
+      \item{Use commands to be described \textit{below} to keep the local and remote repositories in sync.}
     \end{enumerate}
   \end{block}
 \end{frame}
@@ -655,7 +656,7 @@
 \begin{frame}{Remote tracking branches}
   \begin{block}{}
     \begin{itemize}
-      \item{A cloned repository will have two types of branches: not only normal local branches but also \textit{remote tracking branches} (gitk shows them in reddish-brown) that mirror what is going on in the remote repository.}
+      \item{A cloned repository will have two types of branches: not only normal local branches but also \textit{remote tracking branches} (gitk shows them in a peach color) that mirror what is going on in the remote repository.}
     \end{itemize}
     \begin{center}
       \includegraphics[scale=0.8]{RemoteTrackingBranch.png}

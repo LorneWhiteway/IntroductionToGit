@@ -1,2 +1,2 @@
 # IntroductionToGit
-Slides for presentation to Astrophysicists on 'git'.
+Slides (pdf format) for presentation to Astrophysicists on 'git'.

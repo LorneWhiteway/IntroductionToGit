@@ -260,16 +260,16 @@
   \end{block}
 \end{frame}
 
-\begin{frame}{Pointers to nodes - tags}
+\begin{frame}{Labels for nodes - tags}
   \begin{block}{}
-    A \textit{tag} is a label that is attached to a node; gitk shows them in yellow:
+    A \textit{tag} is a label that is attached to a particular node; gitk shows them in yellow:
     \begin{center}
       \includegraphics[scale=0.6]{Tag.png}
     \end{center}
   \end{block}
 \end{frame}
   
-\begin{frame}{Pointers to nodes - branches (1)}
+\begin{frame}{Labels for nodes - branches (1)}
   \begin{block}{}
     \begin{itemize}
       \item{A \textit{branch} is a moveable label that is attached to a node; gitk shows them in green.}
@@ -283,20 +283,21 @@
   \end{block}
 \end{frame}
   
-\begin{frame}{Pointers to nodes - branches (2)}
+\begin{frame}{Labels for nodes - branches (2)}
   \begin{block}{}
     \begin{itemize}
-      \item{Because it moves with the commits, the branch is often thought of as a `development line' (imagine not just the node that the branch points to, but also all the past and future nodes that the branch has pointed to or will point to).}
-      \item{In some contexts (e.g. cloning) a branch is used to refer not only to the pointed-to node but also all its ancestors.}
+      \item{A node must have a branch label before you can commit to it.}
+      \item{Because it moves with the commits, the branch is often thought of as a `development line' (imagine not just the node that the branch labels, but also all the past and future nodes that the branch has labelled or will label).}
+      \item{In some contexts (e.g. cloning) a branch is used to refer not only to the labelled node but also all its ancestors.}
     \end{itemize}
   \end{block}
 \end{frame}
 
-\begin{frame}{Pointers to nodes - branches (3)}
+\begin{frame}{Labels for nodes - branches (3)}
   \begin{block}{}
     \begin{itemize}
-      \item{A branch can point to any node in the DAG - not just to a terminal node (= node with no descendents).}
-      \item{So `branch' is not a perfect metaphor; better is `pointer to a place where growth may occur' (which may be on the trunk).}
+      \item{Any node in a DAG can be labelled with a branch - not just to a terminal node (= node with no descendents).}
+      \item{So `branch' is not a perfect metaphor; better is `label attached to a place where growth may occur' (which may be on the trunk).}
     \end{itemize}
     \begin{center}
       \includegraphics[scale=0.8]{Branch_3.png}
@@ -304,21 +305,21 @@
   \end{block}
 \end{frame}
 
-\begin{frame}{Pointers to nodes - branches (4)}
+\begin{frame}{Labels for nodes - branches (4)}
   \begin{block}{}
     \begin{itemize}
-      \item{When git creates a new repository it creates a branch - by default called `main' - that points to the root node.}
-      \item{House rules often insist that the node pointed to by `main' be `good' (i.e. stable, tested, usable); development is then done in other branches that are merged into main following testing and agreement.}
+      \item{When git creates a new repository it creates a branch - by default called `main' - that is attached to the root node.}
+      \item{House rules often insist that the node labelled `main' be `good' (i.e. stable, tested, usable); development is then done in other branches that are merged into main following testing and agreement.}
       \item{But this is not forced by git. You don't even need to have a `main' branch.}
     \end{itemize}
   \end{block}
 \end{frame}
 
-\begin{frame}{Pointers to nodes - HEAD (1)}
+\begin{frame}{Labels for nodes - HEAD (1)}
   \begin{block}{}
     \begin{itemize}
-      \item{The special pointer HEAD points to the node that corresponds to the files in the working directory. This can be any node in the DAG.}
-      \item{ Use \code{git checkout <nodename>} to set where HEAD points.}
+      \item{The special label HEAD is attached to the node that corresponds to the files in the working directory. This can be any node in the DAG.}
+      \item{ Use \code{git checkout <nodename>} to set which node is `HEAD'.}
       \item{In gitk the HEAD node is shown in yellow.}
     \end{itemize}
     \begin{center}
@@ -327,9 +328,9 @@
   \end{block}
 \end{frame}
 
-\begin{frame}{Pointers to nodes - HEAD (2) - Detached HEAD}
+\begin{frame}{Labels for nodes - HEAD (2) - Detached HEAD}
   \begin{block}{}
-     Usually HEAD points to the same node as one of the branches. But it doesn't have to; if it doesn't then we say we have a `detached HEAD'.
+     Usually the HEAD node also has a branch label. But it doesn't have to; if it doesn't then we say we have a `detached HEAD'.
     \begin{center}
       \includegraphics[scale=0.8]{DetachedHead.png}
     \end{center}
@@ -341,7 +342,7 @@
   \begin{block}{}
     \begin{itemize}
       \item{Refer to a node using its (abbreviated) SHA1 name e.g. `c2d2ea34'.}
-      \item{Or use a pointer name (a tag name, a branch name, or the name `HEAD').}
+      \item{Or use a node label (a tag name, a branch name, or the name `HEAD').}
       \item{Can append \^{} to mean `parent of', \^{}\^{} to mean `grandparent', etc.}
       \item{Example: \code{git checkout main\^{}\^{}}.}
       \item{Distinguish multiple parents via \^{}1 or \^{}2.}
@@ -352,7 +353,7 @@
 
 \begin{frame}{DAG manipulation}
   \begin{block}{}
-      Much (but not all) of your interaction with a git repository involves maintaining and amending the DAG and the pointers to nodes in the DAG.
+      Much (but not all) of your interaction with a git repository involves maintaining and amending the DAG and labels attached to nodes in the DAG.
   \end{block}
 \end{frame}
 
@@ -580,20 +581,11 @@
 \end{frame}
 
 
-%\begin{frame}{Pointer maintenance}
-%  \begin{block}{}
-%    \begin{itemize}
-%      \item{Tags and branches can be created, moved and deleted.}
-%      \item{Recall that a branch is just a pointer to a node. So moving a branch doesn't involve any rearrangement of the DAG - it means simply changing the node to which the branch points.}
-%    \end{itemize}
-%  \end{block}
-%\end{frame}
-
 \begin{frame}{Node cleanup}
   \begin{block}{}
     \begin{itemize}
-      \item{If a node is not `named' (i.e. pointed to by a tag or a branch), and if none of its descendents are named either, then git considers it unneeded and will delete it the next time it does `automatic cleanup'.}
-      \item{So to prune an unneeded `spur' simply delete the branch (i.e. the pointer to the last node in the spur). The nodes in the spur will then eventually be deleted.}
+      \item{If a node is not `named' (i.e. labelled by a tag or a branch), and if none of its descendents are named either, then git considers it unneeded and will delete it the next time it does `automatic cleanup'.}
+      \item{So to prune an unneeded `spur' simply delete the branch (i.e. the label attached to the last node in the spur). The nodes in the spur will then eventually be deleted.}
     \end{itemize}
   \end{block}
 \end{frame}
